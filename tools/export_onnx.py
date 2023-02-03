@@ -46,7 +46,10 @@ def main(config, model_path, output_path, input_shape=(320, 320)):
     dummy_input = torch.autograd.Variable(
         torch.randn(1, 3, input_shape[0], input_shape[1])
     )
-
+    model.head.forward = model.head._forward_onnx
+    outputs = model(dummy_input)
+    names = ['bboxes', 'scores'] * 4
+    output_names = [f'{s}_{o.shape[1]}x{o.shape[2]}' for s, o in zip(names, outputs)]
     torch.onnx.export(
         model,
         dummy_input,
@@ -54,8 +57,8 @@ def main(config, model_path, output_path, input_shape=(320, 320)):
         verbose=True,
         keep_initializers_as_inputs=True,
         opset_version=11,
-        input_names=["data"],
-        output_names=["output"],
+        input_names=["images"],
+        output_names=output_names,
     )
     logger.log("finished exporting onnx ")
 
