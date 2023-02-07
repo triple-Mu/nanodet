@@ -1,11 +1,11 @@
-# nanodet-vargnet-m_416
+# nanodet-vargdarknetx-1x_512
 # COCO mAP(0.5:0.95) = 0.304
 #             AP_50  = 0.459
 #             AP_75  = 0.317
 #           AP_small = 0.106
 #               AP_m = 0.322
 #               AP_l = 0.477
-save_dir: workspace/nanodet-vargnet-m_416
+save_dir: workspace/nanodet-vargdarknetx-1x_512
 model:
   weight_averager:
     name: ExpMovingAverager
@@ -64,7 +64,7 @@ data:
     name: CocoDataset
     img_path: coco/train2017
     ann_path: coco/annotations/instances_train2017.json
-    input_size: [416,416] #[w,h]
+    input_size: [512,512] #[w,h]
     keep_ratio: False
     pipeline:
       perspective: 0.0
@@ -82,7 +82,7 @@ data:
     name: CocoDataset
     img_path: coco/val2017
     ann_path: coco/annotations/instances_val2017.json
-    input_size: [416,416] #[w,h]
+    input_size: [512,512] #[w,h]
     keep_ratio: False
     pipeline:
       normalize: [[103.53, 116.28, 123.675], [57.375, 57.12, 58.395]]
