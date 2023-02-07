@@ -22,6 +22,7 @@ from .repvgg import RepVGG
 from .resnet import ResNet
 from .shufflenetv2 import ShuffleNetV2
 from .timm_wrapper import TIMMWrapper
+from .vargnet import VarGDarkNetX
 from .vargnet_v2 import VargNetV2
 
 
@@ -46,5 +47,7 @@ def build_backbone(cfg):
         return TIMMWrapper(**backbone_cfg)
     elif name == "VargNetV2":
         return VargNetV2(**backbone_cfg)
+    elif name == "VarGDarkNetX":
+        return VarGDarkNetX(**backbone_cfg)
     else:
         raise NotImplementedError
